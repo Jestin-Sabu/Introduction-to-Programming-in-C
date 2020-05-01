@@ -18,9 +18,9 @@ double balancecalculator(retire_info state, double currentBalance){
   return (currentBalance*currentInterest) + state.contribution;
 }
 
-void retirement (int startAge, double intial, retire_info working, retire_info retired){
+void retirement (int startAge, double initial, retire_info working, retire_info retired){
   int currentAge = startAge;
-  double currentBalance = intial;
+  double currentBalance = initial;
   double net = 0;
   while (currentAge < working.months + startAge) {
       printdetails(currentAge, currentBalance);
