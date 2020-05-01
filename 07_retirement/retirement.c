@@ -28,7 +28,6 @@ void retirement (int startAge, double initial, retire_info working, retire_info 
       currentBalance += net;
       currentAge++;
   }
-  printf("Done\n");
   while (currentAge < startAge +  working.months + retired.months){
       printdetails(currentAge, currentBalance);
       net = balancecalculator(retired, currentBalance);
