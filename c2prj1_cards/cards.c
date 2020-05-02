@@ -5,12 +5,8 @@
 
 
 void assert_card_valid(card_t c) {
-  int check;
-  if((c.value>=2 && c.value<=VALUE_ACE) && (c.suit>=SPADES && c.suit<=CLUBS))
-    check = 1;
-  else
-    check = 0;
-  assert(check!=1);
+  assert(c.value>=2 && c.value<=VALUE_ACE);
+  asset(c.suit>=SPADES and c.suit<=CLUBS);
 }
 
 const char * ranking_to_string(hand_ranking_t r) {
