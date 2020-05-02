@@ -1,10 +1,6 @@
-Grading at Sat May  2 17:23:41 UTC 2020
+Grading at Sat May  2 17:24:41 UTC 2020
 Compiling cards.c
-cards.c: In function ‘assert_card_valid’:
-cards.c:9:3: error: implicit declaration of function ‘asset’ [-Werror=implicit-function-declaration]
-   asset(c.suit>=SPADES && c.suit<=CLUBS);
-   ^
-cc1: all warnings being treated as errors
-Could not compile your card.c!
+Testing card_from_letters
+Failed
 
 Overall Grade: FAILED
