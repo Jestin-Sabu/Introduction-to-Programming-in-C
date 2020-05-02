@@ -10,7 +10,7 @@ void assert_card_valid(card_t c) {
     check = 1;
   else
     check = 0;
-  assert(check==1);
+  assert(check!=1);
 }
 
 const char * ranking_to_string(hand_ranking_t r) {
