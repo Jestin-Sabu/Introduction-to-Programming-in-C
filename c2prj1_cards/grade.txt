@@ -1,10 +1,13 @@
-Grading at Sat May  2 17:19:21 UTC 2020
+Grading at Sat May  2 17:22:12 UTC 2020
 Compiling cards.c
-Testing card_from_letters
-For card_from_letters('0','c'), I expected 0c but got 0c
-For card_from_letters('0','d'), I expected 0d but got 0c
-For card_from_letters('0','h'), I expected 0h but got 0c
-For card_from_letters('0','s'), I expected 0s but got 0c
-Failed
+cards.c: In function ‘assert_card_valid’:
+cards.c:9:3: error: implicit declaration of function ‘asset’ [-Werror=implicit-function-declaration]
+   asset(c.suit>=SPADES and c.suit<=CLUBS);
+   ^
+cards.c:9:24: error: expected ‘)’ before ‘and’
+   asset(c.suit>=SPADES and c.suit<=CLUBS);
+                        ^
+cc1: all warnings being treated as errors
+Could not compile your card.c!
 
 Overall Grade: FAILED
