@@ -1,0 +1,13 @@
+Grading at Sun May  3 16:54:24 UTC 2020
+Attempting to compile maxSeq.c 
+maxSeq.c: In function ‘maxSeq’:
+maxSeq.c:8:12: error: return makes integer from pointer without a cast [-Werror=int-conversion]
+     return NULL;
+            ^
+maxSeq.c:10:12: error: return makes integer from pointer without a cast [-Werror=int-conversion]
+     return NULL;
+            ^
+cc1: all warnings being treated as errors
+The code did not compile!
+
+Overall Grade: F
