@@ -13,7 +13,7 @@ size_t maxSeq(int *array, size_t n)
     if(array[i]<array[i+1])
       a++;
     else
-      a=0;
+      a=1;
     if(a>b)
       b = a;
   }
