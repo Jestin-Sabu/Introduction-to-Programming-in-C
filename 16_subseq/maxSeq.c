@@ -10,7 +10,7 @@ size_t maxSeq(int *array, size_t n)
     return 0;
   
   for(int i=1;i<n;i++){
-    if(array[i]<array[i+1])
+    if(array[i-1]<array[i])
       a++;
     else
       a=1;
