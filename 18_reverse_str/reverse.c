@@ -3,7 +3,18 @@
 #include <string.h>
 
 void reverse(char * str) {
-  //WRITE ME!
+  int n = strlen(str);
+  char *a, *b, temp;
+  a = str;
+  b = str+n-1;
+  for(int i=0;i<n/2; i++){
+    temp = *a;
+    *a = *b;
+    *b = temp;
+    a++;
+    b--;
+  }
+  
 }
 
 int main(void) {
