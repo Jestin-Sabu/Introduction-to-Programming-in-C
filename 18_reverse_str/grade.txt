@@ -1,11 +1,5 @@
-Grading at Sun May  3 17:42:07 UTC 2020
+Grading at Sun May  3 17:44:49 UTC 2020
 Attempting to compile  reverse.c
-Line_2_did_not_match
-Line_3_did_not_match
-Line_4_did_not_match
-Line_5_did_not_match
-Line_6_did_not_match
-Line_7_did_not_match
 Your file did not match the expected ouput
 Your output did not match what we expected.
 Removing your main() and replacing it with our own to run more tests...
@@ -15,7 +9,6 @@ testcase2:
 your code failed the testcase
 #################################################
 testcase3:
-Line_1_did_not_match
 Your file did not match the expected ouput
 your code failed the testcase
 #################################################
@@ -23,7 +16,6 @@ testcase4:
 Your file matched the expected output
 #################################################
 testcase5:
-Line_1_did_not_match
 Your file did not match the expected ouput
 your code failed the testcase
 
