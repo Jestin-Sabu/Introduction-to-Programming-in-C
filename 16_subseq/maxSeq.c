@@ -17,6 +17,6 @@ size_t maxSeq(int *array, size_t n)
     if(a>b)
       b = a;
   }
-  return a;
+  return b;
 }
   
