@@ -4,7 +4,9 @@
 
 void reverse(char * str) {
   int n;
-  for(n=0;*(str+n)!='\0';n++); 
+  if(str ==NULL)
+    exit(EXIT_FAILURE);
+  for(n=0;*(str+n)!='\0';n++);
   char *a, *b, temp;
   a = str;
   b = str+n-1;
