@@ -6,7 +6,8 @@ void reverse(char * str) {
   int n = strlen(str);
   char *a, *b, temp;
   a = str;
-  b = str+n-2;
+  for(int j=0;j<n-1;j++)
+    b++;
   for(int i=0;i<n/2; i++){
     temp = *a;
     *a = *b;
