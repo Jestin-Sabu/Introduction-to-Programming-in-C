@@ -1,4 +1,4 @@
-Grading at Mon May  4 09:47:27 UTC 2020
+Grading at Mon May  4 09:54:29 UTC 2020
 Attempting to compile rotate.c
 Running testcase 1
 Your file matched the expected output
@@ -6,11 +6,13 @@ testcase1 passed
 Running testcase 1
 Line_5_did_not_match
 Line_6_did_not_match
+Line_7_did_not_match
 Your file did not match the expected ouput
 testcase1 failed, your output did not match with the answer
 Running testcase 1
 Line_5_did_not_match
 Line_6_did_not_match
+Line_7_did_not_match
 Your file did not match the expected ouput
 testcase1 failed, your output did not match with the answer
 
