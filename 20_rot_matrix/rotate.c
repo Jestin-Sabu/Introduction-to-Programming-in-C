@@ -12,5 +12,10 @@ void rotate(char matrix[10][10]){
       matrix[c][b] = temp;
     }
   }
+  temp = matrix[5][5];
+  matrix[5][5] = matrix[6][5];
+  matrix[6][5] = matrix[6][6];
+  matrix[6][6] = matrix[5][6];
+  matrix[5][6] = temp;
   
 }
