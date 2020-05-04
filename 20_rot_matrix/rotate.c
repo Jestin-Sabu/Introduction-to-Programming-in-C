@@ -8,9 +8,11 @@ void rotate(char matrix[10][10]){
       temp = matrix[a][c];
       matrix[a][c] = matrix[d][a];
       matrix[d][a] = matrix[b][d];
-      matrix[b][d] = matrix[a][b];
-      matrix[a][b] = temp;
+      matrix[b][d] = matrix[c][b];
+      matrix[c][b] = temp;
     }
+    if(a==1)
+      break;
   }
   
 }
