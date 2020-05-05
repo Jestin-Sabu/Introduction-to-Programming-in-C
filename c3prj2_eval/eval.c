@@ -4,7 +4,7 @@
 #include <assert.h>
 
 int is_n_lenght_straight_at(deck_t *hand, size_t index, suit_t fs, int n);
-int is_ace_low_staright_at(deck_t *hand, size_t index, suit fs);
+int is_ace_low_staright_at(deck_t *hand, size_t index, suit_t fs);
 
 int com1(card_t c1,card_t c2){
   if (c1.value == c2.value) return 1;
