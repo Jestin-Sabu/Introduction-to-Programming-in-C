@@ -3,6 +3,15 @@
 #include <stdlib.h>
 #include <assert.h>
 
+int is_n_lenght_straight_at(deck_t *hand, size_t index, suit_t fs, int n);
+int is_ace_low_staright_at(deck_t *hand, size_t index, suit fs);
+
+int com1(card_t c1,card_t c2){
+  if (c1.value == c2.value) return 1;
+  return 0;
+}
+
+
 int card_ptr_comp(const void * vp1, const void * vp2) {
   const card_t * const * cp1=vp1;
   const card_t * const * cp2=vp2;
