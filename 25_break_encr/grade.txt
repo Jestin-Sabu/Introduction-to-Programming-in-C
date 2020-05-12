@@ -1,7 +1,15 @@
-Grading at Tue May 12 04:28:54 UTC 2020
+Grading at Tue May 12 04:30:27 UTC 2020
 Attempting to compile breaker.c 
 gcc -o breaker -pedantic -Wall -Werror breaker.c
-Makefile:2: recipe for target 'breaker' failed
-The code did not compile!
+testcase1 passed
+#################################################
+testcase2:
+testcase2 passed
+#################################################
+testcase3:
+valgrind reported memory errors or your program ran too long
+#################################################
+testcase4:
+testcase4 passed
 
-Overall Grade: F
+Overall Grade: C
