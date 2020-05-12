@@ -16,6 +16,7 @@ int keyfinder(FILE* f){
       max = alpha[i];
       j=i;
     }
+  }
     if(j>=('e'-'a'))
        return j-('e'-'a');
     else
