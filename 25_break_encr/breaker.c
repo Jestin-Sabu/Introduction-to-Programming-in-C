@@ -6,6 +6,7 @@ int keyfinder(FILE* f){
   int alpha[26] = {0},max,j,c;
   while((c=fgetc(f)) != EOF){
     if(isalpha(c)){
+      c = tolower(c);
       c -= 'a';
       alpha[c]++;
     }
