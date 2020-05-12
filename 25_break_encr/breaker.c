@@ -34,7 +34,10 @@ int main(int argc, char** argv){
   }
   int key = keyfinder(f);
   printf("%d\n",key);
-  fclose(f);
+  if(fclose(f)!=0){
+    perror("could not close the file\n");
+    return EXIT_FAILURE;
+  }
   return EXIT_SUCCESS;
 }
   
