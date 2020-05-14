@@ -36,8 +36,8 @@ void print(char **output, int size){
 }
 
 int main(int argc, char ** argv){
-  int size = 0;
   if(argc == 1){
+    int size = 0;
     char **output = read(stdin,&size);
     sortData(output,size);
     print(output,size);
@@ -52,9 +52,13 @@ int main(int argc, char ** argv){
 	fprintf(stderr,"Failed to open the file %s.",argv[i]);
 	exit(EXIT_FAILURE);
       }
+      int size = 0;
       char **output = read(f,&size);
       if((fclose(f) != 0)){
 	fprintf(stderr,"Failed to close the file %s.",argv[i]);
+	for (int j=0;j<size;j++)
+	  free(output[j]);
+	free(output);
 	exit(EXIT_FAILURE);
       }
       sortData(output,size);
