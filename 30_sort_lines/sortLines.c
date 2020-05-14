@@ -59,7 +59,6 @@ int main(int argc, char ** argv){
       }
       sortData(output,size);
       print(output,size);
-      output = NULL;
       for(int j=0;j<size;j++)
 	free(output[i]);
       free(output);
