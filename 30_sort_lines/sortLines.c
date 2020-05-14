@@ -42,9 +42,6 @@ int main(int argc, char ** argv){
     output = read(stdin,&size);
     sortData(output,size);
     print(output,size);
-    for(int i=0;i<size;i++)
-      free(output[i]);
-    free(output);
   }
   else{
     for(int i=1;i<argc;i++){
@@ -60,10 +57,11 @@ int main(int argc, char ** argv){
       }
       sortData(output,size);
       print(output,size);
-      for(int i=0;i<size;i++)
-	free(output[i]);
-      free(output);
+      output = NULL;
     }
   }
+  for(int i=0;i<argc;i++)
+    free(output[i]);
+  free(output);
   return EXIT_SUCCESS;
 }
