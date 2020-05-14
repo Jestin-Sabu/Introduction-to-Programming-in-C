@@ -65,7 +65,7 @@ int main(int argc, char ** argv){
 	max = size;
     }
     for(int j=0;j<max;j++)
-      free(outpu[j]);
+      free(output[j]);
     free(output);
   }
   return EXIT_SUCCESS;
