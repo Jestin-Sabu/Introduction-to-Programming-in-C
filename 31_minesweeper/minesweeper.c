@@ -183,21 +183,18 @@ int click (board_t * b, int x, int y) {
 }
 
 int checkWin(board_t * b) {
-  int y = b->height;
-  int x = b->width;
-  for(int i=0;i<y;i++){
-    for(int j=0;i<x;j++){
-      if(b->board[i][j] == UNKNOWN)
-	return 0;;
+  for(int y=0 ; y < b->height;y++){
+    for(int x=0; x < b->width;x++){
+      if (b->board[y][x]==UNKNOWN) return 0;
     }
   }
   return 1;
 }
 
 void freeBoard(board_t * b) {
-  int y = b->height;
-  for(int i=y-1;i>=0;i--)
-    free(b->board[i]);
+  for(int y=(b->height-1) ; y>=0;y--){
+    free(b->board[y]);
+  }
   free(b->board);
   free(b);
 }
