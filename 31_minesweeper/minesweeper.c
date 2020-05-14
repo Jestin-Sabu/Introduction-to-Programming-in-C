@@ -45,7 +45,7 @@ board_t * makeBoard(int w, int h, int numMines) {
   b->totalMines = numMines;
   b->width = w;
   b->height = h;
-  b->board = malloc(h*sizeof(*(b->board)));
+  b->board = malloc(h*sizeof(b->board));
   if(b->board == NULL){
     fprintf(stderr,"Failed to intialize the board\n");
     return NULL;
