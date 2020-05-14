@@ -52,7 +52,7 @@ board_t * makeBoard(int w, int h, int numMines) {
   }
   int *temp;
   for(int y=0;y<h;y++){
-    temp = malloc(w*sizeof(int*));
+    temp = malloc(w*sizeof(temp));
     if(temp == NULL){
       fprintf(stderr,"Failed to intialize the board\n");
       return NULL;
@@ -64,7 +64,6 @@ board_t * makeBoard(int w, int h, int numMines) {
   }
   for(int i=0;i<numMines;i++)
     addRandomMine(b);
-  fprintf(stderr,"Complete1");
   return b;
 }
 void printBoard(board_t * b) {    
