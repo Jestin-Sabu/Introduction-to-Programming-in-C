@@ -36,10 +36,9 @@ void print(char **output, int size){
 }
 
 int main(int argc, char ** argv){
-  char ** output = NULL;
-  int size = 0,max = 0;
+  int size = 0;
   if(argc == 1){
-    output = read(stdin,&size);
+    char **output = read(stdin,&size);
     sortData(output,size);
     print(output,size);
     for(int i=0;i<size;i++)
@@ -53,7 +52,7 @@ int main(int argc, char ** argv){
 	fprintf(stderr,"Failed to open the file %s.",argv[i]);
 	exit(EXIT_FAILURE);
       }
-      output = read(f,&size);
+      char **output = read(f,&size);
       if((fclose(f) != 0)){
 	fprintf(stderr,"Failed to close the file %s.",argv[i]);
 	exit(EXIT_FAILURE);
@@ -61,12 +60,10 @@ int main(int argc, char ** argv){
       sortData(output,size);
       print(output,size);
       output = NULL;
-      if(size>max)
-	max = size;
+      for(int j=0;j<size;j++)
+	free(output[i]);
+      free(output);
     }
-    for(int j=0;j<max;j++)
-      free(output[j]);
-    free(output);
   }
   return EXIT_SUCCESS;
 }
