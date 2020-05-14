@@ -126,20 +126,49 @@ int valid_box(int w, int h, int x1, int y1){
 
 int countMines(board_t * b, int x, int y) {
   int count = 0;
-  int a[] = {-1,0,1};
   int x1,y1;
-  for(int i=0;i<3;i++){
-    for(int j=0;j<3;j++){
-      if((i == 0) && (j == 0));
-      else{
-	x1 = x+a[i];
-	y1 = y+a[j];
-	if(valid_box(b->width,b->height,x1,y1)){
-	  if(IS_MINE(b->board[y1][x1]))
-	    count++;
-	}
-      }
-    }
+  x1 = x-1;
+  y1 = y-1;
+  if((valid_box(b->width,b->height,x1,y1)) == 1){
+    if(IS_MINE(b->board[y1][x1]))
+       count++;
+  }
+  y1 = y;
+  if((valid_box(b->width,b->height,x1,y1)) == 1){
+    if(IS_MINE(b->board[y1][x1]))
+       count++;
+  }
+  y1 = y+1;
+  if((valid_box(b->width,b->height,x1,y1)) == 1){
+    if(IS_MINE(b->board[y1][x1]))
+       count++;
+  }
+  x1 = x+1;
+  y1 = y-1;
+  if((valid_box(b->width,b->height,x1,y1)) == 1){
+    if(IS_MINE(b->board[y1][x1]))
+       count++;
+  }
+  y1 = y;
+  if((valid_box(b->width,b->height,x1,y1)) == 1){
+    if(IS_MINE(b->board[y1][x1]))
+       count++;
+  }
+  y1 = y+1;
+  if((valid_box(b->width,b->height,x1,y1)) == 1){
+    if(IS_MINE(b->board[y1][x1]))
+       count++;
+  }
+  x1 = x;
+  y1 = y-1;
+  if((valid_box(b->width,b->height,x1,y1)) == 1){
+    if(IS_MINE(b->board[y1][x1]))
+       count++;
+  }
+  y1 = y+1;
+  if((valid_box(b->width,b->height,x1,y1)) == 1){
+    if(IS_MINE(b->board[y1][x1]))
+       count++;
   }
   return count;
 }
