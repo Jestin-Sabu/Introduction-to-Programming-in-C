@@ -64,6 +64,7 @@ board_t * makeBoard(int w, int h, int numMines) {
   }
   for(int i=0;i<numMines;i++)
     addRandomMine(b);
+  printf("Complete1");
   return b;
 }
 void printBoard(board_t * b) {    
