@@ -43,8 +43,9 @@ void addRandomMine(board_t * b) {
 board_t * makeBoard(int w, int h, int numMines) {
   board_t *b = malloc(sizeof(*b));
   if(b == NULL){
-    fprintf("Failed to i tialize the board\n");
+    fprintf(stderr,"Failed to i tialize the board\n");
     return NULL;
+  }
   b->totalMines = numMines;
   b->width = w;
   b->height = h;
