@@ -41,24 +41,26 @@ void addRandomMine(board_t * b) {
 }
 
 board_t * makeBoard(int w, int h, int numMines) {
-  board_t *b = malloc(sizeof(board_t*));
+  board_t *b = malloc(sizeof(*b));
   b->totalMines = numMines;
   b->width = w;
   b->height = h;
-  b->board = malloc(h*sizeof(int**));
+  b->board = malloc(h*sizeof(*(b->board)));
   if(b->board == NULL){
     fprintf(stderr,"Failed to intialize the board\n");
     return NULL;
   }
+  int *temp;
   for(int y=0;y<h;y++){
-    b->board[y] = malloc(w*sizeof(int*));
-    if(b->board[y] == NULL){
+    temp = malloc(w*sizeof(int*));
+    if(temp == NULL){
       fprintf(stderr,"Failed to intialize the board\n");
       return NULL;
     }
-    for(int x=0;x<w;x++){
-      b->board[y][x] = UNKNOWN;
-    }
+    for(int x=0;x<w;x++)
+      temp[x] = UNKNOWN;
+    b->board[y] = temp;
+    temp = NULL;
   }
   for(int i=0;i<numMines;i++)
     addRandomMine(b);
@@ -135,8 +137,8 @@ int countMines(board_t * b, int x, int y) {
 	if(valid_box(b->width,b->height,x1,y1)){
 	  if(IS_MINE(b->board[y1][x1]))
 	    count++;
+	}
       }
-     }
     }
   }
   return count;
