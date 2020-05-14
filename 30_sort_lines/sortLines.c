@@ -60,7 +60,7 @@ int main(int argc, char ** argv){
       sortData(output,size);
       print(output,size);
       for(int j=0;j<size;j++)
-	free(output[i]);
+	free(output[j]);
       free(output);
     }
   }
