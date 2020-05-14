@@ -1,22 +1,65 @@
-Grading at Thu May 14 16:08:59 UTC 2020
+Grading at Thu May 14 16:10:36 UTC 2020
 Attempting to compile minesweeper.c
-#################################################
-testcase1:
-Your output is correct
-  - Valgrind was clean (no errors, no memory leaks)
-valgrind was clean
-#################################################
-testcase2:
-Your output is correct
-  - Valgrind was clean (no errors, no memory leaks)
-valgrind was clean
-#################################################
-testcase3:
-Your output is correct
-  - Valgrind was clean (no errors, no memory leaks)
-valgrind was clean
-#################################################
-testcase4:
-valgrind reported memory errors
+minesweeper.c: In function ‘makeBoard’:
+minesweeper.c:46:13: error: passing argument 1 of ‘fprintf’ from incompatible pointer type [-Werror=incompatible-pointer-types]
+     fprintf("Failed to i tialize the board\n");
+             ^
+In file included from minesweeper.c:1:0:
+/usr/include/stdio.h:356:12: note: expected ‘FILE * restrict {aka struct _IO_FILE * restrict}’ but argument is of type ‘char *’
+ extern int fprintf (FILE *__restrict __stream,
+            ^
+minesweeper.c:46:5: error: too few arguments to function ‘fprintf’
+     fprintf("Failed to i tialize the board\n");
+     ^
+minesweeper.c:72:1: error: ISO C forbids nested functions [-Werror=pedantic]
+ void printBoard(board_t * b) {    
+ ^
+minesweeper.c:123:1: error: ISO C forbids nested functions [-Werror=pedantic]
+ int checkvalid(int x ,int y ,int w,int h){
+ ^
+minesweeper.c:128:1: error: ISO C forbids nested functions [-Werror=pedantic]
+ int countMines(board_t * b, int x, int y) {
+ ^
+minesweeper.c:176:1: error: ISO C forbids nested functions [-Werror=pedantic]
+ int click (board_t * b, int x, int y) {
+ ^
+minesweeper.c:195:1: error: ISO C forbids nested functions [-Werror=pedantic]
+ int checkWin(board_t * b) {
+ ^
+minesweeper.c:207:1: error: ISO C forbids nested functions [-Werror=pedantic]
+ void freeBoard(board_t * b) {
+ ^
+minesweeper.c:215:1: error: ISO C forbids nested functions [-Werror=pedantic]
+ int readInt(char ** linep, size_t * lineszp) {
+ ^
+minesweeper.c:241:1: error: ISO C forbids nested functions [-Werror=pedantic]
+ void doReveal(board_t * b, int x, int y, int revealMines){
+ ^
+minesweeper.c:265:1: error: ISO C forbids nested functions [-Werror=pedantic]
+ int maybeReveal(board_t * b, int x, int y) {
+ ^
+minesweeper.c:298:1: error: ISO C forbids nested functions [-Werror=pedantic]
+ void determineKnownMines(board_t * b) {
+ ^
+minesweeper.c:312:1: error: ISO C forbids nested functions [-Werror=pedantic]
+ void revealMines(board_t * b) {
+ ^
+minesweeper.c:321:1: error: ISO C forbids nested functions [-Werror=pedantic]
+ int playTurn(board_t * b, char ** linep, size_t *lineszp) {
+ ^
+minesweeper.c:351:1: error: ISO C forbids nested functions [-Werror=pedantic]
+ int main(int argc, char ** argv) {
+ ^
+minesweeper.c:351:5: error: ‘main’ is normally a non-static function [-Werror=main]
+ int main(int argc, char ** argv) {
+     ^
+minesweeper.c:380:1: error: expected declaration or statement at end of input
+ }
+ ^
+minesweeper.c:380:1: error: control reaches end of non-void function [-Werror=return-type]
+ }
+ ^
+cc1: all warnings being treated as errors
+The code did not compile!
 
-Overall Grade: C
+Overall Grade: F
