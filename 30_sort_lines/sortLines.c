@@ -16,9 +16,54 @@ void sortData(char ** data, size_t count) {
   qsort(data, count, sizeof(char *), stringOrder);
 }
 
-int main(int argc, char ** argv) {
-  
-  //WRITE YOUR CODE HERE!
-  
+char ** read(FILE *stream, int *size){
+  char *line = NULL;
+  char **output = NULL;
+  size_t sz = 0;
+  while((getline(&line,&sz,stream)) >= 0){
+    output = realloc(output,(*size+1)*sizeof(char*));
+    output[*size] = line;
+    (*size)++;
+    line = NULL;
+  }
+  free(line);
+  return output;
+}
+
+void print(char **output, int size){
+  for(int i=0;i<size;i++)
+    printf("%s",output[i]);
+}
+
+int main(int argc, char ** argv){
+  char ** output = NULL;
+  int size = 0;
+  if(argc == 1){
+    output = read(stdin,&size);
+    sortData(output,size);
+    print(output,size);
+    for(int i=0;i<size;i++)
+      free(output[i]);
+    free(output);
+  }
+  else{
+    for(int i=1;i<argc;i++){
+      FILE *f = fopen(argv[i],"r");
+      if(f == NULL){
+	fprintf(stderr,"Failed to open the file %s.",argv[i]);
+	exit(EXIT_FAILURE);
+      }
+      output = read(f,&size);
+      if((fclose(f) != 0)){
+	fprintf(stderr,"Failed to close the file %s.",argv[i]);
+	exit(EXIT_FAILURE);
+      }
+      sortData(output,size);
+      print(output,size);
+      for(int i=0;i<size;i++)
+	free(output[i]);
+      free(output);
+    }
+  }
   return EXIT_SUCCESS;
 }
