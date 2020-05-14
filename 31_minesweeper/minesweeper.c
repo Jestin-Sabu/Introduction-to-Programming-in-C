@@ -128,14 +128,15 @@ int countMines(board_t * b, int x, int y) {
   int x1,y1;
   for(int i=0;i<3;i++){
     for(int j=0;j<3;j++){
-      if((i == 0) && (j == 0))
-	continue;
-      x1 = x+a[i];
-      y1 = y+a[j];
-      if(valid_box(b->width,b->height,x1,y1)){
+      if((i == 0) && (j == 0));
+      else{
+	x1 = x+a[i];
+	y1 = y+a[j];
+	if(valid_box(b->width,b->height,x1,y1)){
 	  if(IS_MINE(b->board[y1][x1]))
-	     count++;
+	    count++;
       }
+     }
     }
   }
   return count;
@@ -174,11 +175,9 @@ int checkWin(board_t * b) {
 
 void freeBoard(board_t * b) {
   int y = b->height;
-  for(int i=0;i<y;i++){
-    for(int j=0;i<y;j++)
-      free(b->board[i]);
-  }
-  free(b);
+  for(int i=0;i<y;i++)
+    free(b->board[i]);
+  free(b->board);
   free(b);
 }
 
