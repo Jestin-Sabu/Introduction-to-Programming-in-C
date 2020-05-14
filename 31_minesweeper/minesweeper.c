@@ -41,8 +41,28 @@ void addRandomMine(board_t * b) {
 }
 
 board_t * makeBoard(int w, int h, int numMines) {
-  //WRITE ME!
-  return NULL;
+  board_t *b = malloc(sizeof(board_t*));
+  b->totalMines = numMines;
+  b->width = w;
+  b->height = h;
+  b->board = malloc(h*sizeof(char**));
+  if(b->board == NULL){
+    fprintf(stderr,"Failed to intialize the board\n");
+    return NULL;
+  }
+  for(int y=0;y<h;y++){
+    b->board[y] = malloc(w*sizeof(char*));
+    if(b->board[y] == NULL){
+      fprintf(stderr,"Failed to intialize the board\n");
+      return NULL;
+    }
+    for(int x=0;x<w;x++){
+      b->board[y][x] = UNKNOWN;
+    }
+  }
+  for(int i=0;i<numMines;i++)
+    addRandomMine(b);
+  return b;
 }
 void printBoard(board_t * b) {    
   int found = 0;
@@ -94,9 +114,31 @@ void printBoard(board_t * b) {
   }
   printf("\nFound %d of %d mines\n", found, b->totalMines);
 }
+
+int valid_box(int w, int h, int x1, int y1){
+  if((x1>=0) && (x1<w) && (y1>=0) && (y1<h))
+    return 1;
+  else
+    return 0;
+}
+
 int countMines(board_t * b, int x, int y) {
-  //WRITE ME!
-  return 0;
+  int count = 0;
+  int a[] = {-1,0,1};
+  int x1,y1;
+  for(int i=0;i<3;i++){
+    for(int j=0;j<3;j++){
+      if((i == 0) && (j == 0))
+	continue;
+      x1 = x+a[i];
+      y1 = y+a[j];
+      if(valid_box(b->width,b->height,x1,y1)){
+	  if(IS_MINE(b->board[y1][x1]))
+	     count++;
+      }
+    }
+  }
+  return count;
 }
 int click (board_t * b, int x, int y) {
   if (x < 0 || x >= b->width ||
@@ -118,12 +160,26 @@ int click (board_t * b, int x, int y) {
 }
 
 int checkWin(board_t * b) {
-  //WRITE ME!
-  return 0;
+  int flag = 1;
+  int y = b->height;
+  int x = b->width;
+  for(int i=0;i<y;i++){
+    for(int j=0;i<x;j++){
+      if(b->board[i][j] == UNKNOWN)
+	flag = 0;
+    }
+  }
+  return flag;
 }
 
 void freeBoard(board_t * b) {
-  //WRITE ME!
+  int y = b->height;
+  for(int i=0;i<y;i++){
+    for(int j=0;i<y;j++)
+      free(b->board[i]);
+  }
+  free(b);
+  free(b);
 }
 
 int readInt(char ** linep, size_t * lineszp) {
