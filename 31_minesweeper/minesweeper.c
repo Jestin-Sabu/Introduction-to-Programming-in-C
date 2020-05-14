@@ -117,59 +117,57 @@ void printBoard(board_t * b) {
   printf("\nFound %d of %d mines\n", found, b->totalMines);
 }
 
-int valid_box(int w, int h, int x1, int y1){
-  if((x1>=0) && (x1<w) && (y1>=0) && (y1<h))
-    return 1;
-  else
-    return 0;
+int checkvalid(int x ,int y ,int w,int h){
+  if (((x>=0)&&(x < w))&&((y >= 0)&&(y<h))) return 1;
+  else return 0;
 }
 
 int countMines(board_t * b, int x, int y) {
-  int count = 0;
-  int x1,y1;
-  x1 = x-1;
-  y1 = y-1;
-  if((valid_box(b->width,b->height,x1,y1)) == 1){
-    if(IS_MINE(b->board[y1][x1]))
-       count++;
+  int w=b->width;
+  int h=b->height;
+  int count=0;
+
+  int x1;
+  int y1;
+
+  x1=x-1;
+  y1=y-1;
+  if(checkvalid(x1,y1,w,h)){
+    if (IS_MINE(b->board[y1][x1])) count ++;
   }
-  y1 = y;
-  if((valid_box(b->width,b->height,x1,y1)) == 1){
-    if(IS_MINE(b->board[y1][x1]))
-       count++;
+  y1=y;
+  if(checkvalid(x1,y1,w,h)){
+    if (IS_MINE(b->board[y1][x1])) count ++;
   }
-  y1 = y+1;
-  if((valid_box(b->width,b->height,x1,y1)) == 1){
-    if(IS_MINE(b->board[y1][x1]))
-       count++;
+  y1=y+1;
+  if(checkvalid(x1,y1,w,h)){
+    if (IS_MINE(b->board[y1][x1])) count ++;
   }
-  x1 = x+1;
-  y1 = y-1;
-  if((valid_box(b->width,b->height,x1,y1)) == 1){
-    if(IS_MINE(b->board[y1][x1]))
-       count++;
+
+  x1=x+1;
+  y1=y-1;
+  if(checkvalid(x1,y1,w,h)){
+    if (IS_MINE(b->board[y1][x1])) count ++;
   }
-  y1 = y;
-  if((valid_box(b->width,b->height,x1,y1)) == 1){
-    if(IS_MINE(b->board[y1][x1]))
-       count++;
+  y1=y;
+  if(checkvalid(x1,y1,w,h)){
+    if (IS_MINE(b->board[y1][x1])) count ++;
   }
-  y1 = y+1;
-  if((valid_box(b->width,b->height,x1,y1)) == 1){
-    if(IS_MINE(b->board[y1][x1]))
-       count++;
+  y1=y+1;
+  if(checkvalid(x1,y1,w,h)){
+    if (IS_MINE(b->board[y1][x1])) count ++;
   }
-  x1 = x;
-  y1 = y-1;
-  if((valid_box(b->width,b->height,x1,y1)) == 1){
-    if(IS_MINE(b->board[y1][x1]))
-       count++;
+
+  x1=x;
+  y1=y-1;
+  if(checkvalid(x1,y1,w,h)){
+    if (IS_MINE(b->board[y1][x1])) count ++;
   }
-  y1 = y+1;
-  if((valid_box(b->width,b->height,x1,y1)) == 1){
-    if(IS_MINE(b->board[y1][x1]))
-       count++;
+  y1=y+1;
+  if(checkvalid(x1,y1,w,h)){
+    if (IS_MINE(b->board[y1][x1])) count ++;
   }
+
   return count;
 }
 int click (board_t * b, int x, int y) {
