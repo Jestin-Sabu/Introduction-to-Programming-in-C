@@ -3,15 +3,14 @@
 
 
 struct _kvpair_t { 
-  //DEFINE ME!
-
+  char *value;
+  char *key;
 };
 typedef struct _kvpair_t kvpair_t;
 
 struct _kvarray_t { 
-  //DEFINE ME!
-
-
+  kvpair_t **pair;
+  int numarray;
 };
 typedef struct _kvarray_t kvarray_t;
 
