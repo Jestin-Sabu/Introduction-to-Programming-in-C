@@ -1,4 +1,4 @@
-Grading at Sun May  3 11:58:16 UTC 2020
+Grading at Wed May 20 05:20:37 UTC 2020
 Attempting to compile test.c
 gcc -o test -std=gnu99 -Wall -Werror test.c
 compiled
