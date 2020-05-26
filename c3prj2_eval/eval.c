@@ -1,15 +1,20 @@
-#include "eval.h"
+#include"eval.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
+int com1(card_t c1,card_t c2){
+  if (c1.value == c2.value) return 1;
+  return 0;
+}
+
 
 int card_ptr_comp(const void * vp1, const void * vp2) {
   const card_t * const * cp1=vp1;
   const card_t * const * cp2=vp2;
   if ((**cp1).value > (**cp2).value) return -1;
   else if ((**cp1).value < (**cp2).value) return 1;
-  else if ((**cp1).suit > (**cp2).suit) return -1;
-  else if ((**cp1).suit < (**cp2).suit) return 1;
+  else if ((**cp1).suit < (**cp2).suit) return -1;
+  else if ((**cp1).suit > (**cp2).suit) return 1;
   else return 0;
 }
 
@@ -73,64 +78,39 @@ ssize_t  find_secondary_pair(deck_t * hand,
   return -1;
 }
 int is_n_length_straight_at(deck_t * hand, size_t index, suit_t fs, int n) {
-  card_t**card = hand -> cards;
-  int count =0;
-
+  int count =1;
   if (fs ==NUM_SUITS ){
-    count=1;
-    for (size_t i=index ; i<((hand ->n_cards)-1); i++){
-      card_t card1=**(card + i);
-      card_t card2=**(card + i+1);
-      if (card1.value == card2.value) continue;
-      if (card2.value == (card1.value - 1)) count ++;
+    for (size_t i=index ; i<hand ->n_cards-1; i++){
+      if ((*hand->cards[i]).value==(*hand->cards[i+1]).value) continue;
+      if ((*hand->cards[i]).value-1==(*hand->cards[i+1]).value){
+	count ++;
+	if (count == n) return 1;}
       else return 0;
-      if (count >= n) return 1;
-    }
+    }}
+  else {
+    if((*hand->cards[index]).suit != fs ) return 0;
+    card_t* org=hand->cards[index];
+    for (size_t i=index+1 ; i<hand ->n_cards; i++){
+      if ((*hand->cards[i]).suit != fs) continue;
+      if (org->value-1==(*hand->cards[i]).value){
+	count ++;
+	if (count == n) return 1;
+	org=hand->cards[i]; }
+      else return 0;}}
 
-  }else {
-    count=1;
-    for (size_t i=index ; i<((hand ->n_cards)-1); i++){
-      card_t card1=**(card + i);
-      if (card1.suit != fs && i==0) break;
-      while(card1.suit != fs && i<((hand ->n_cards))){
-	i++;
-	card1=**(card+i);}
-      if (!(i<((hand ->n_cards)-1))) break;
-
-      card_t card2=**(card + i+1);
-      while(card2.suit != fs && i<((hand ->n_cards)-2)){
-	i++;
-	card2=**(card+i+1);}
-      if( !(i<hand -> n_cards ))break;
-
-      if (card2.value == (card1.value - 1))count ++;
-      else return 0;
-      if (count >= n) return 1;
-    }
-
-  }
   return 0;
 }
 
 int is_ace_low_straight_at(deck_t * hand, size_t index, suit_t fs){
-  card_t**card = hand -> cards;
-  card_t card1;
-  card1=**(card+index);
-  if(card1.value == 14){
-    for(size_t i=1+index ;i < (hand -> n_cards-3);i++){
-      int temp=is_n_length_straight_at(hand, i, fs, 4);
-      card1=**(card+i);
-      if (temp == 1 && card1.value == 5){
-	if (fs == NUM_SUITS) return 1;
-	else {
-	  card1=**(card+index);
-	  if (card1.suit == fs)return 1;
-	}
-
+  if((*hand->cards[index]).value == VALUE_ACE){
+    for (size_t i=index+1 ; i<hand ->n_cards-3; i++){
+      int t=is_n_length_straight_at( hand,i,fs, 4);
+      if (t ==1 && (*hand->cards[i]).value==5) {
+	if (fs == NUM_SUITS )  return 1;
+	else if ((*hand->cards[index]).suit == fs) return 1;
+	return 0;
       }
-    }
-  }
-
+    }}
   return 0;
 }
 
@@ -200,7 +180,18 @@ int compare_hands(deck_t * hand1, deck_t * hand2) {
 //implementation in eval-c4.o) so that the
 //other functions we have provided can make
 //use of get_match_counts.
-unsigned * get_match_counts(deck_t * hand) ;
+
+unsigned * get_match_counts(deck_t * hand) {
+  unsigned* arr=malloc(hand->n_cards*sizeof(*arr));
+  for(int i=0 ; i< hand->n_cards ; i++){
+    card_t x = *(hand->cards[i]);
+    unsigned  count=0;
+    for(int j=0 ; j< hand->n_cards;j++){
+      if(com1(*(hand->cards[j]),x)) count ++;
+    }
+    arr[i] = count;}
+  return arr;
+}
 
 // We provide the below functions.  You do NOT need to modify them
 // In fact, you should not modify them!
@@ -211,10 +202,12 @@ unsigned * get_match_counts(deck_t * hand) ;
 //into the card array "to"
 //if "fs" is NUM_SUITS, then suits are ignored.
 //if "fs" is any other value, a straight flush (of that suit) is copied.
-void copy_straight(card_t ** to, deck_t *from, size_t ind, suit_t fs, size_t count) {
+void copy_straight(card_t ** to, deck_t *from, size_t ind, suit_t fs, size_t count){
+
   assert(fs == NUM_SUITS || from->cards[ind]->suit == fs);
   unsigned nextv = from->cards[ind]->value;
   size_t to_ind = 0;
+  //  printf("%d %zu \n",fs,ind);
   while (count > 0) {
     assert(ind < from->n_cards);
     assert(nextv >= 2);
