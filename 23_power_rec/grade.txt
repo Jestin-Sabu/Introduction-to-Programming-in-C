@@ -1,4 +1,4 @@
-Grading at Wed May 20 05:20:45 UTC 2020
+Grading at Tue May 26 00:54:52 UTC 2020
 Attempting to compile power.c
 Attempting to compile power.o with our main
 Checking for unsigned power (unsigned x, unsigned y)
