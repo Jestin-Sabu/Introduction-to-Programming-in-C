@@ -1,0 +1,12 @@
+Grading at Tue May 26 01:42:24 UTC 2020
+Compiling cards.c -> cards.o
+Compiling deck.c -> deck.o
+Compiling input.c -> input.o
+Compiling future.c -> future.o
+Linking input.o, future.o deck.o, cards.o, and our tester
+test-input.o: In function `main':
+/home/drew/poker/graders/test-input.c:69: undefined reference to `read_input'
+collect2: error: ld returned 1 exit status
+Linking failed
+
+Overall Grade: F
